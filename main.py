@@ -1,6 +1,7 @@
 import torch
 from torchvision import transforms, models
 from fastapi import FastAPI, UploadFile, File
+from fastapi.staticfiles import StaticFiles
 from PIL import Image
 import io
 
@@ -21,9 +22,7 @@ transform = transforms.Compose([
     transforms.Normalize([0.5,0.5,0.5], [0.5,0.5,0.5])
 ])
 
-@app.get('/')
-def home():
-    return {"message": "Oil Spill Detection API is running"}
+
 
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
@@ -39,3 +38,5 @@ async def predict(file: UploadFile = File(...)):
     return {
         "prediction": classes[pred.item()]
     }
+
+app.mount("/", StaticFiles(directory="frontend", html=True), name="frontend")

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SARVision</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="slideshow-container" id="slideshow-container">
+        <div class="slide active" style="background-image: url('/assets/earth_bg.png')"></div>
+        <div class="slide" style="background-image: url('/assets/ocean_1.png')"></div>
+        <div class="slide" style="background-image: url('/assets/ocean_2.png')"></div>
+    </div>
+    <div class="container">
+        <header>
+            <h1>SAR<span class="highlight">Vision</span></h1>
+            <p>Upload a satellite image to detect potential oil spills using our deep learning model.</p>
+        </header>
+        
+        <main>
+            <div class="upload-card" id="upload-card">
+                <input type="file" id="file-input" accept="image/*" hidden>
+                <div class="drop-area" id="drop-area">
+                    <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                    </svg>
+                    <p>Drag & drop an image here</p>
+                    <span>or <button class="browse-btn" id="browse-btn">browse</button></span>
+                </div>
+            </div>
+
+            <div class="preview-card hidden" id="preview-card">
+                <div class="image-wrapper">
+                    <img id="image-preview" src="" alt="Preview">
+                </div>
+                <div class="actions">
+                    <button class="btn secondary" id="reset-btn">Choose Another</button>
+                    <button class="btn primary" id="analyze-btn">Analyze Image</button>
+                </div>
+            </div>
+
+            <div class="result-card hidden" id="result-card">
+                <div class="loader hidden" id="loader"></div>
+                <div class="result-content hidden" id="result-content">
+                    <h2 id="prediction-text">Result</h2>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="/script.js"></script>
+</body>
+</html>
