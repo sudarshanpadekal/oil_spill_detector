@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Detection - SARVision</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+    <div class="slideshow-container" id="slideshow-container">
+        <div class="slide active" style="background-image: url('/assets/earth_bg.png')"></div>
+        <div class="slide" style="background-image: url('/assets/ocean_1.png')"></div>
+        <div class="slide" style="background-image: url('/assets/ocean_2.png')"></div>
+    </div>
+
+    <div class="container page-video">
+        <header class="page-heading">
+            <p class="eyebrow">Video Detection</p>
+            <h1>Analyze a video and inspect the YOLO-enhanced result.</h1>
+            <p class="subtle">Upload a short video clip, process it through the backend, and preview the generated annotated output.</p>
+        </header>
+
+        <main class="stacked-grid">
+            <section class="panel-card">
+                <label class="panel-label" for="video-input">Select a video</label>
+                <input type="file" id="video-input" accept="video/*" />
+                <button id="process-video-btn" class="btn primary wide">Process video</button>
+            </section>
+
+            <section class="panel-card result-panel hidden" id="video-result-panel">
+                <div class="loader hidden" id="video-loader"></div>
+                <div id="video-status" class="result-text"></div>
+                <video id="video-output" controls class="video-preview hidden"></video>
+            </section>
+        </main>
+
+        <nav class="footer-nav">
+            <a class="nav-link" href="/">Back to home</a>
+            <a class="nav-link" href="/picture.html">Try image detection</a>
+        </nav>
+    </div>
+
+    <script src="/video.js"></script>
+</body>
+</html>
