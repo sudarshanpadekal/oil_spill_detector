@@ -9,6 +9,10 @@ from fastapi.staticfiles import StaticFiles
 from PIL import Image
 from torchvision import models, transforms
 from ultralytics import YOLO
+from ultralytics.utils.plotting import colors
+
+# Change truecolor (class 2) mask color from grey to bright orange
+colors.palette[2] = (255, 165, 0)
 
 app = FastAPI()
 
