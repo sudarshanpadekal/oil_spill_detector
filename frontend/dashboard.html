@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SARVision | Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/style.css" />
+    
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+            border-radius: 1rem;
+            border: 1px solid var(--border-color);
+            background: #020617;
+        }
+        .stats-panel {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .stat-box {
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            text-align: center;
+        }
+        .stat-box h3 {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .stat-box p {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+        .chart-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+        .reports-list {
+            list-style: none;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .reports-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .reports-list li:last-child {
+            border-bottom: none;
+        }
+        .report-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .report-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container" id="slideshow-container">
+        <div class="slide active" style="background-image: url('/assets/earth_bg.png')"></div>
+    </div>
+
+    <div class="container">
+        <header class="page-heading">
+            <p class="eyebrow">Command Center</p>
+            <h1>Global <span class="highlight">Analytics</span></h1>
+            <p class="subtle">Live monitoring and historical data of oil spill detections.</p>
+        </header>
+
+        <div class="dashboard-grid">
+            <div class="panel-card" style="padding: 1rem;">
+                <h2 style="margin-bottom: 1rem; font-size: 1.2rem; padding-left: 0.5rem;">Live Detection Map</h2>
+                <div id="map"></div>
+            </div>
+            
+            <div class="stats-panel">
+                <div class="stat-box">
+                    <h3>Total Scans</h3>
+                    <p id="totalScans">--</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Spills Found</h3>
+                    <p id="spillsFound" style="color: var(--danger);">--</p>
+                </div>
+                <div style="flex: 1; overflow: hidden;">
+                    <h3 style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.5rem; text-transform: uppercase;">Recent Reports</h3>
+                    <ul class="reports-list" id="reportsList">
+                        <li><span style="color: var(--text-secondary); font-size: 0.9rem;">Waiting for data...</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h2 style="margin-bottom: 1rem; font-size: 1.2rem;">Monthly Detections</h2>
+            <canvas id="statsChart" height="80"></canvas>
+        </div>
+
+        <nav class="footer-nav">
+            <a href="/index.html" class="nav-link">&larr; Back to Home</a>
+        </nav>
+    </div>
+
+    <script src="/dashboard.js"></script>
+</body>
+</html>

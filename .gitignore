@@ -1,0 +1,6 @@
+.env
+__pycache__/
+outputs/
+uploads/
+test_videos/
+scratch_runs/

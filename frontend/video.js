@@ -30,14 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!response.ok) throw new Error('Unable to process video');
 
       const data = await response.json();
-      if (data.status === 'success' && data.video_path) {
-        const publicPath = data.video_path.replace(/\\/g, '/');
-        videoOutput.src = '/outputs/videos/' + publicPath.split('/').pop();
-        videoOutput.classList.remove('hidden');
-        videoStatus.textContent = 'Video processed successfully.';
+      if (data.status === 'success') {
+        videoStatus.textContent = data.message;
         videoStatus.className = 'result-text success';
       } else {
-        throw new Error('No output video path returned');
+        throw new Error('Processing failed');
       }
     } catch (error) {
       videoStatus.textContent = 'Video processing failed.';
